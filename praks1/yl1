@@ -1,0 +1,6 @@
+#!/bin/bash
+# See skript tervitab kasutajat tema kasutajanimega
+
+echo -n "Tere, "
+echo -n "$USER"
+echo "!"
