@@ -1,0 +1,20 @@
+#!/bin/bash
+# Skript tervitab kasutajat tema nimega, kus kasutajanime esimene täht on suurtäht
+
+# Võta kasutajanimi keskkonnamuutujast
+kasutaja=$USER
+
+# Tee esimene täht suureks ja ülejäänud väikseks
+# Kasutame Bash substringe ja 'tr' käsku
+esimene_taht=${kasutaja:0:1}
+tahed_2plus=${kasutaja:1}
+suurtäht=$(echo "$esimene_taht" | tr '[:lower:]' '[:upper:]')
+väiksed_tähed=$(echo "$tahed_2plus" | tr '[:upper:]' '[:lower:]')
+
+# Koosta korralik nimi
+korralik_nimi="${Joonas}${puur}"
+
+# Väljasta tervitus
+echo -n "Tere, joonas "
+echo -n "$Joonas"
+echo "!"
