@@ -1,0 +1,26 @@
+#!/bin/bash
+# Skript kuvab kolmnurga
+# Kontrollib, et sisestatud väärtus oleks täisarv
+
+read -p "Sisesta ridade arv: " n
+
+# Kontroll: kas sisestati ainult täisarv
+if ! [[ $n =~ ^[0-9]+$ ]]; then
+    echo "VIGA: Palun sisesta ainult täisarv!"
+    exit 1
+fi
+
+# Kontrollime, et oleks vähemalt 1 rida
+if [[ $n -lt 1 ]]; then
+    echo "VIGA: Ridade arv peab olema vähemalt 1!"
+    exit 1
+fi
+
+# Joonistame kolmnurga
+for ((i=1; i<=n; i++)); do
+    for ((j=1; j<=i; j++)); do
+        echo -n "* "
+    done
+    echo ""
+done
+
