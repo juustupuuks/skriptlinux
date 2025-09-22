@@ -1,0 +1,31 @@
+#!/bin/bash
+# Skript kuvab tühja sisuga tärniruudu
+# Kontrollib, et sisend oleks ainult täisarv
+
+read -p "Sisesta ridade arv: " n
+read -p "Sisesta tärnide arv reas: " m
+
+# Kontroll: kas sisestati ainult numbrid
+if ! [[ $n =~ ^[0-9]+$ && $m =~ ^[0-9]+$ ]]; then
+    echo "VIGA: Palun sisesta ainult täisarvud!"
+    exit 1
+fi
+
+# Kontroll: kas arvud on vähemalt 2 (muidu ei saa ruutu teha)
+if [[ $n -lt 2 || $m -lt 2 ]]; then
+    echo "VIGA: Ridu ja veerge peab olema vähemalt 2!"
+    exit 1
+fi
+
+# Joonistame ruudu
+for ((i=1; i<=n; i++)); do
+    for ((j=1; j<=m; j++)); do
+        if [[ $i -eq 1 || $i -eq $n || $j -eq 1 || $j -eq $m ]]; then
+            echo -n "* "
+        else
+            echo -n "  "
+        fi
+    done
+    echo ""
+done
+
