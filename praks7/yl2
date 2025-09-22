@@ -1,0 +1,21 @@
+#!/bin/bash
+# Skript kuvab ristküliku kasutaja määratud ridade ja tärnide arvuga
+# Kui sisestatakse mitte-arvuline väärtus, antakse veateade.
+
+read -p "Sisesta ridade arv: " read_ridu
+read -p "Sisesta tärnide arv reas: " read_tarne
+
+# Kontrollime, kas mõlemad sisendid on positiivsed täisarvud
+if ! [[ $read_ridu =~ ^[0-9]+$ && $read_tarne =~ ^[0-9]+$ ]]; then
+    echo "VIGA: Palun sisesta ainult positiivsed täisarvud!"
+    exit 1
+fi
+
+# Tsüklid ristküliku joonistamiseks
+for ((i=1; i<=read_ridu; i++)); do
+    for ((j=1; j<=read_tarne; j++)); do
+        echo -n "* "
+    done
+    echo ""
+done
+
