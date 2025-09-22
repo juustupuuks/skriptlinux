@@ -1,0 +1,17 @@
+#!/bin/bash
+# Skript kuvab kuupäeva ja ajaga seotud info
+
+# Kontrollime, et vajalikud käsud on olemas
+for cmd in date cal; do
+    if ! command -v $cmd >/dev/null 2>&1; then
+        echo "VIGA: Käsku '$cmd' ei leitud!"
+        exit 1
+    fi
+done
+
+echo "Täna on: $(date +"%d.%m.%Y")"
+echo "Kell on: $(date +"%H:%M:%S")"
+echo "Nädalapäev: $(date +"%A")"
+echo "Kuu nimi: $(date +"%B")"
+echo "Kalender:"
+cal
