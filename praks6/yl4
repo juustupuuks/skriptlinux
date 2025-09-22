@@ -1,0 +1,27 @@
+#!/bin/bash
+# Skript kontrollib, kas arv on algarv või mitte
+# Täiendatud versioon: kontrollib 1–20 arvud läbi
+
+for arv in {1..20}; do
+    if [ $arv -lt 2 ]; then
+        echo "$arv - ei ole algarv"
+        continue
+    fi
+
+    jagaja=2
+    on_algarv=true
+
+    while [ $jagaja -lt $arv ]; do
+        if (( arv % jagaja == 0 )); then
+            on_algarv=false
+            break
+        fi
+        ((jagaja++))
+    done
+
+    if $on_algarv; then
+        echo "$arv - on algarv"
+    else
+        echo "$arv - ei ole algarv"
+    fi
+done
