@@ -1,0 +1,14 @@
+#!/bin/bash
+# Skript tervitab süsteemi kasutajanime järgi
+
+if [[ -z "$USER" ]]; then
+    echo "VIGA: Kasutajanimi pole määratud!"
+    exit 1
+fi
+
+if ! [[ $USER =~ ^[a-zA-Z0-9._-]+$ ]]; then
+    echo "VIGA: Kasutajanimi sisaldab keelatud märke!"
+    exit 1
+fi
+
+echo "Tere, $USER!"
