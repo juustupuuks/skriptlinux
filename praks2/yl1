@@ -1,0 +1,11 @@
+#!/bin/bash
+# Skript tervitab kasutajat nimega "Kasutajanimi"
+
+kasutaja="Kasutajanimi"
+
+if [[ -z "$kasutaja" ]]; then
+    echo "VIGA: Kasutajanimi on määramata!"
+    exit 1
+fi
+
+echo "Tere, $kasutaja!"
