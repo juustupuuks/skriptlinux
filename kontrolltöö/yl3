@@ -1,0 +1,38 @@
+#!/bin/bash
+# Autor: Joonas Puur
+# Skripti nimi: kujund
+# Ülesanne: joonistab vastava ridade arvuga kahaneva kujundi
+# Erijuht: kui sisestatakse 67, siis joonistab ASCII numbrid "6" ja "7"
+
+read -p "Sisesta ridade arv: " n
+
+# Kontrollime, et sisestus oleks positiivne täisarv
+if ! [[ $n =~ ^[0-9]+$ ]]; then
+    echo "VIGA: Palun sisesta ainult positiivne täisarv!"
+    exit 1
+fi
+
+if [[ $n -lt 1 ]]; then
+    echo "VIGA: Ridade arv peab olema vähemalt 1!"
+    exit 1
+fi
+
+# Kui sisestatakse 67, teeme erilise ASCII kunstiga numbrid 6 ja 7
+if [[ $n -eq 67 ]]; then
+    echo " █████   ██████"
+    echo "█        █    █"
+    echo "█        █   █ "
+    echo "█  ███   █  █  "
+    echo "█    █   █ █   "
+    echo "█    █   █     "
+    echo " █████   █     "
+    exit 0
+fi
+
+# Kui pole 67, siis teeme tavalise kujundi
+for ((i=n; i>=1; i--)); do
+    for ((j=1; j<=i; j++)); do
+        echo -n "* "
+    done
+    echo ""
+done
