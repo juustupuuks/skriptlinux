@@ -1,0 +1,13 @@
+#!/bin/bash
+# Autor: Joonas Puur
+# Skripti nimi: info
+# Ülesanne: tervitab kasutajat ja kuvab kuupäeva ning kellaaja
+
+# Kontrollime, kas keskkonnamuutuja USER on olemas
+if [[ -z "$USER" ]]; then
+    echo "VIGA: Kasutajanimi pole määratud!"
+    exit 1
+fi
+
+echo "Tere, $USER!"
+echo "Täna on $(date +"%d.%m.%Y") kell $(date +"%H:%M")"
