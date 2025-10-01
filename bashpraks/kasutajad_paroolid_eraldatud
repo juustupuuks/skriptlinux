@@ -1,0 +1,23 @@
+#!/bin/bash
+# Autor: Joonas Puur
+# Skript: kasutajad_paroolid_eraldatud – kasutajanimed ühes failis, paroolid teises
+
+if [ "$(id -u)" -ne 0 ]; then
+  echo "❌ Skript peab jooksma root kasutajana!"
+  exit 1
+fi
+
+if [ $# -ne 2 ]; then
+  echo "Kasutus: $0 <kasutajad_fail> <paroolid_fail>"
+  exit 1
+fi
+
+USERS=$1
+PASSWORDS=$2
+
+paste "$USERS" "$PASSWORDS" | while read USER PASS; do
+  [ -n "$USER" ] || continue
+  useradd -m -s /bin/bash "$USER"
+  echo "$USER:$PASS" | chpasswd
+  echo "✅ Kasutaja '$USER' loodud parooliga."
+done
