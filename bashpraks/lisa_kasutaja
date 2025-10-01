@@ -1,0 +1,27 @@
+#!/bin/bash
+# Skript: lisa_kasutaja
+# Kasutaja loomine parameetri abil
+
+# Kontroll, et jooksutatakse root kasutajana
+if [ "$(id -u)" -ne 0 ]; then
+  echo "❌ Skript peab jooksma root kasutajana!"
+  exit 1
+fi
+
+# Kontroll, et kasutajanimi on antud
+if [ -z "$1" ]; then
+  echo "Kasutus: $0 <kasutajanimi>"
+  exit 1
+fi
+
+USER=$1
+
+# Kasutaja loomine kodukataloogiga
+useradd -m -s /bin/bash "$USER"
+
+# Kontrollime kas õnnestus
+if id "$USER" &>/dev/null; then
+  echo "✅ Kasutaja '$USER' loodud."
+else
+  echo "❌ Viga: kasutajat ei loodud."
+fi
