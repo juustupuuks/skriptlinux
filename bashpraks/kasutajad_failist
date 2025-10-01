@@ -1,0 +1,19 @@
+#!/bin/bash
+# Skript: kasutajad_failist
+# Loeb failist kasutajanimed ja kutsub lisa_kasutaja skripti
+
+if [ "$(id -u)" -ne 0 ]; then
+  echo "❌ Skript peab jooksma root kasutajana!"
+  exit 1
+fi
+
+if [ -z "$1" ]; then
+  echo "Kasutus: $0 <failinimi>"
+  exit 1
+fi
+
+FILE=$1
+
+while read USER; do
+  [ -n "$USER" ] && ./lisa_kasutaja "$USER"
+done < "$FILE"
