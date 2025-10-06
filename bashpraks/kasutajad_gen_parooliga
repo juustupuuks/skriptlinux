@@ -1,0 +1,32 @@
+#!/bin/bash
+if [ "$EUID" -ne 0 ]; then
+  echo "Skript peab töötama root kasutajana!"
+  exit 1
+fi
+
+if [ -z "$1" ]; then
+  echo "Kasutamine: $0 kasutajate_fail"
+  exit 1
+fi
+
+fail="$1"
+logi="loodud_kasutajad_paroolidega.log"
+
+# Kontroll, kas pwgen on paigaldatud
+if ! command -v pwgen &>/dev/null; then
+  echo "Paigaldan pwgen paketi..."
+  apt-get update -y && apt-get install -y pwgen
+fi
+
+> "$logi"
+
+while IFS= read -r kasutaja; do
+  [ -z "$kasutaja" ] && continue
+  parool=$(pwgen -s 8 1)
+  useradd -m "$kasutaja"
+  echo "$kasutaja:$parool" | chpasswd
+  echo "$kasutaja:$parool" >> "$logi"
+  echo "Lisatud $kasutaja, parool salvestatud logisse."
+done < "$fail"
+
+echo "Kõik kasutajad lisatud. Paroolid on failis: $logi"
