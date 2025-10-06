@@ -1,0 +1,4 @@
+if [ "$SUDO_USER" ]; then
+  echo "Skript ei tohi töötada sudo kaudu! Käivita otse root kasutajana."
+  exit 1
+fi
