@@ -8,3 +8,4 @@ read eesnimi perenimi
 
 echo "Sinu eesnimi on $eesnimi ja perenimi on $perenimi"
 echo "Tere tulemast, $eesnimi $perenimi!"
+##testimiseks
